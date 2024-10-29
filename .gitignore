@@ -45,7 +45,7 @@ nb-configuration.xml
 .certs/
 
 #KEYS
-.privateKey.pem
-.publicKey.pem
-.rsaPrivateKey.pem
-.serviceAccountKey.json
+/src/main/resources/privateKey.pem
+/src/main/resources/publicKey.pem
+/src/main/resources/rsaPrivateKey.pem
+/src/main/resources/serviceAccountKey.json
