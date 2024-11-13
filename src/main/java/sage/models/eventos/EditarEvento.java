@@ -1,10 +1,8 @@
-package sage.models;
+package sage.models.eventos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
-import java.util.Map;
 
-public class Evento {
+public class EditarEvento {
 
     @JsonProperty("id")
     private String id;
@@ -18,21 +16,16 @@ public class Evento {
     @JsonProperty("status")
     private String status;
 
-    @JsonProperty("reservas")
-    private List<Map<String, Object>> reservas; // Campo para armazenar reservas
+    public EditarEvento() {
 
-    public Evento() {
     }
 
-    public Evento(String id, String nome, String descricao, String status, List<Map<String, Object>> reservas) {
+    public EditarEvento(String id, String nome, String descricao, String status) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.status = status;
-        this.reservas = reservas;
     }
-
-    // Getters e setters para 'id', 'nome', 'descricao', 'status' e 'reservas'
 
     public String getId() {
         return id;
@@ -64,13 +57,5 @@ public class Evento {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public List<Map<String, Object>> getReservas() {
-        return reservas;
-    }
-
-    public void setReservas(List<Map<String, Object>> reservas) {
-        this.reservas = reservas;
     }
 }

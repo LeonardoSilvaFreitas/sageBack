@@ -1,7 +1,6 @@
 package sage.services;
 
 import com.google.api.core.ApiFuture;
-import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import jakarta.annotation.security.RolesAllowed;
@@ -13,15 +12,13 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.jwt.JsonWebToken;
-import sage.models.*;
+import sage.models.reservas.*;
 
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.stream.Collectors;
 
 @Path("/reservas")
 public class Reservas {

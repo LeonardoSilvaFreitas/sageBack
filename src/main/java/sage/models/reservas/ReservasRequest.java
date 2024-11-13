@@ -1,4 +1,4 @@
-package sage.models;
+package sage.models.reservas;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

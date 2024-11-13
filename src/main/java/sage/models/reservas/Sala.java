@@ -1,4 +1,4 @@
-package sage.models;
+package sage.models.reservas;
 
 public class Sala {
     private String nome;

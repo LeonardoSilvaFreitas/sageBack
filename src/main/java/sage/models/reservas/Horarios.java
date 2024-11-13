@@ -1,4 +1,4 @@
-package sage.models;
+package sage.models.reservas;
 
 import java.util.Arrays;
 import java.util.List;
