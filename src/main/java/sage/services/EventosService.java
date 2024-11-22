@@ -74,7 +74,14 @@ public class EventosService {
             Map<String, Object> updateFields = new HashMap<>();
             updateFields.put("nome", evento.getNome());
             updateFields.put("descricao", evento.getDescricao());
+            updateFields.put("codigo", evento.getCodigo());
             updateFields.put("status", evento.getStatus());
+            updateFields.put("periodo", evento.getPeriodo());
+            updateFields.put("tipo", evento.getTipo());
+            updateFields.put("financiamento", evento.getFinanciamento());
+            updateFields.put("palavrasChaves", evento.getPalavrasChaves());
+            updateFields.put("programacao", evento.getProgramacao());
+            updateFields.put("dataLocais", evento.getDataLocais());
 
             db.collection("eventos").document(evento.getId()).update(updateFields).get();
             return Response.ok(evento).build();
@@ -93,4 +100,5 @@ public class EventosService {
                 .get();
         return future.get().getDocuments();
     }
+
 }

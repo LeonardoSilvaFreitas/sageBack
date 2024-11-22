@@ -44,12 +44,13 @@ public class Evento {
     @JsonProperty("programacao")
     private String programacao;
 
+    @JsonProperty("dataLocais")
+    private List<DataSala> dataLocais; // Utilizando a nova classe modelo
+
     public Evento() {
     }
 
-    public Evento(String id, String nome, String descricao, String status, List<Map<String, Object>> reservas,
-                  String cpf, String codigo, String periodo, String tipo, String financiamento,
-                  String palavrasChaves, String programacao) {
+    public Evento(String id, String nome, String descricao, String status, List<Map<String, Object>> reservas, String cpf, String codigo, String periodo, String tipo, String financiamento, String palavrasChaves, String programacao, List<DataSala> dataLocais) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -62,10 +63,10 @@ public class Evento {
         this.financiamento = financiamento;
         this.palavrasChaves = palavrasChaves;
         this.programacao = programacao;
+        this.dataLocais = dataLocais;
     }
 
     // Getters e setters para todos os campos, incluindo os do ProcessarEvento
-
 
     public String getNome() {
         return nome;
@@ -161,5 +162,13 @@ public class Evento {
 
     public void setProgramacao(String programacao) {
         this.programacao = programacao;
+    }
+
+    public List<DataSala> getDataLocais() {
+        return dataLocais;
+    }
+
+    public void setDataLocais(List<DataSala> dataLocais) {
+        this.dataLocais = dataLocais;
     }
 }
