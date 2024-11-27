@@ -2,7 +2,7 @@ name: Build Imagem
 on:
   push:
     branches:
-      - final
+      - okhttp3
 
 jobs:
   gerando-imagem-docker:
@@ -35,6 +35,9 @@ jobs:
       - name: Kubectl tool installer
         uses: Azure/setup-kubectl@v1
 
+      - name: Checkout gh-repo
+        uses: actions/checkout@v3
+
       - name: Setup kubectl
         env:
           K8S_CONFIG: ${{ secrets.K8S_CONFIG }}
@@ -42,20 +45,9 @@ jobs:
           mkdir -p $HOME/.kube
           echo "${K8S_CONFIG}" | base64 --decode > $HOME/.kube/config
 
-      - name: Setup deployment
-        env:
-          K8S_DEPLOYMENT: ${{ secrets.K8S_DEPLOYMENT }}
-        run: |
-          echo "${K8S_DEPLOYMENT}" | base64 --decode > $HOME/deployment.yaml
-
       - name: Aplicando deployment
-        run: kubectl apply -f $HOME/deployment.yaml
+        run: kubectl apply -f deployment.yml
 
-      - name: Rollout deployment
-        run: kubectl rollout restart deployment sage-back-deployment
+      - name: Aguardando Deployment finalizar
+        run: kubectl rollout status deployment/sage-back-deployment
 
-      - name: Wait For Deployment To Start
-        run: sleep 20s
-
-      - name: Wait For Deployment To Finish
-        run: kubectl get pods | grep sage-back

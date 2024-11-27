@@ -1,0 +1,65 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sage-back-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    nginx.ingress.kubernetes.io/rewrite-target: /$2 # Usado para reescrever o caminho
+    nginx.ingress.kubernetes.io/auth-response-headers: Authorization
+spec:
+  tls:
+    - hosts:
+        - app.poa.ifrs.edu.br
+      secretName: tls-secret
+  rules:
+    - host: app.poa.ifrs.edu.br
+      http:
+        paths:
+          - path: /sageback(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: sage-back-service
+                port:
+                  number: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sage-back-service
+spec:
+  selector:
+    app: sage-back
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sage-back-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sage-back
+  template:
+    metadata:
+      labels:
+        app: sage-back
+    spec:
+      containers:
+        - name: sage-back
+          image: leonardosf1405/sage-back
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "200m"
+            requests:
+              memory: "100Mi"
+              cpu: "100m"
