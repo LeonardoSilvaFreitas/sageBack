@@ -78,14 +78,27 @@ public class LoginService {
                 // Gerar e retornar o token JWT
                 return gerarTokenJWT(cpf);
             } else {
-                System.out.println("Falha no login.");
-                return null;
+                throw new IllegalArgumentException("Usuário e/ou senha inválidos.");
             }
+        } catch (IllegalArgumentException e) {
+            // Tratamento específico para mensagens de erro do login
+            System.err.println("Erro de login: " + e.getMessage());
+            throw new RuntimeException("401: " + e.getMessage());
+        } catch (IllegalStateException e) {
+            // Tratamento específico para erros de acesso negado
+            System.err.println("Erro de autorização: " + e.getMessage());
+            throw new RuntimeException("403: " + e.getMessage());
         } catch (IOException e) {
+            // Tratamento de erros internos
             System.err.println("Erro ao executar operações: " + e.getMessage());
-            return null;
+            throw new RuntimeException("Erro interno ao realizar login.", e);
         }
     }
+
+
+
+
+
 
     private TokenResponse gerarTokenJWT(String cpf) {
         String token = Jwt.issuer("sage-app")
@@ -98,6 +111,9 @@ public class LoginService {
     }
 
     private boolean performLogin(String user, String password) throws IOException {
+        // Limpa os cookies antes de realizar uma nova tentativa de login
+        cookieStore.clear();
+
         RequestBody formBody = new FormBody.Builder()
                 .add("user.login", user)
                 .add("user.senha", password)
@@ -111,18 +127,20 @@ public class LoginService {
 
         try (Response response = client.newCall(loginRequest).execute()) {
             String responseBodyString = response.body().string();
-            if (response.isSuccessful() && !responseBodyString.contains("Usuário e/ou senha inválidos")) {
-                return true;
-            } else if (response.isSuccessful() && responseBodyString.contains("Usuário e/ou senha inválidos")) {
-                System.err.println("Usuário e/ou senha inválidos");
-                return false;
+            if (response.isSuccessful()) {
+                if (responseBodyString.contains("Usuário e/ou senha inválidos")) {
+                    System.err.println("Usuário e/ou senha inválidos detectados.");
+                    throw new IllegalArgumentException("Usuário e/ou senha inválidos.");
+                }
+                return true; // Login bem-sucedido
             } else {
                 System.err.println("Falha no login: " + response.code());
-                System.err.println("Corpo da Resposta: " + responseBodyString);
-                return false;
+                throw new IOException("Erro no login: código " + response.code());
             }
         }
     }
+
+
 
     private void performEscolhaVinculo() throws IOException {
         Request request = new Request.Builder()
@@ -145,6 +163,8 @@ public class LoginService {
         }
     }
 
+
+
     private void followRedirect(String newLocation) throws IOException {
         String url = newLocation.startsWith("http") ? newLocation : "https://sig.ifrs.edu.br" + newLocation;
         Request redirectRequest = new Request.Builder()
@@ -163,29 +183,37 @@ public class LoginService {
     }
 
     private void performPaginaDocente(String cpf) throws IOException {
-        RequestBody formBody = new FormBody.Builder()
-                .add("menu:j_id_jsp_798026457_3", "menu:j_id_jsp_798026457_3")
-                .add("jscook_action", "menu_j_id_jsp_798026457_3_j_id_jsp_798026457_4_menu:A]#{atividadeExtensao.listarMinhasAtividades}")
-                .add("javax.faces.ViewState", "j_id2")
-                .build();
-
         Request postRequest = new Request.Builder()
                 .url(SIGAA_URL_DOCENTE)
-                .post(formBody)
                 .header("User-Agent", USER_AGENT)
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .build();
 
         try (Response response = client.newCall(postRequest).execute()) {
+            String responseBody = response.body().string();
+
             if (response.isSuccessful()) {
-                System.out.println("Requisição POST bem-sucedida!");
-                parseHtml(response.body().string(), cpf);
+                Document document = Jsoup.parse(responseBody);
+                System.out.println("Passou aqui na página docente");
+
+                Element erroElement = document.selectFirst("div#container > div#conteudo > table > tbody > tr > td");
+                if (erroElement != null) {
+                    String erroTexto = erroElement.text();
+
+                    if (erroTexto.contains("Acesso Negado") || erroTexto.contains("Usuário Não Autorizado")) {
+                        throw new IllegalStateException("Acesso Negado: Usuário Não Autorizado.");
+                    }
+                }
+
+                System.out.println("Requisição para a página docente bem-sucedida!");
+                parseHtml(responseBody, cpf);
             } else {
-                System.err.println("Falha na requisição POST: " + response.code());
-                System.err.println("Corpo da Resposta: " + response.body().string());
+                throw new IOException("Erro ao acessar a página docente.");
             }
         }
     }
+
+
 
     private void obterDetalhesEvento(int id, String cpf) throws IOException {
         RequestBody formDetalheEvento = new FormBody.Builder()
@@ -300,89 +328,4 @@ public class LoginService {
 
 
 
-
-    /*
-    @Path("/login")
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response login(LoginDTO loginDTO) {
-        // Logando a mensagem
-        //logger.info("Endpoint '/hello' foi chamado.");
-
-        String cpf = loginDTO.cpf();
-        String senha = loginDTO.senha();
-
-        try (Playwright playwright = Playwright.create()) {
-            Browser browser = playwright.firefox().launch(new BrowserType.LaunchOptions().setHeadless(false));
-            BrowserContext context = browser.newContext();
-            Page page = context.newPage();
-
-            page.navigate("https://sighomologa.ifrs.edu.br/admin/login.jsf");
-            page.waitForLoadState(LoadState.DOMCONTENTLOADED);
-            page.fill("input[name='login']", cpf);
-            page.fill("input[name='senha']", senha);
-            page.click("input[type='submit']");
-
-            //page.waitForLoadState(LoadState.NETWORKIDLE);
-
-            boolean loginError = page.isVisible("center:has-text(\"Usuário e/ou senha inválidos\")");
-
-            if (loginError) {
-                throw new RuntimeException("Usuário e/ou senha inválidos");
-            } else {
-
-                page.click("#modulos > ul > li.academico > a");
-
-                //page.navigate("https://sighomologa.ifrs.edu.br/admin/logonSIGAA");
-
-                page.navigate("https://sighomologa.ifrs.edu.br/sigaa/escolhaVinculo.do?dispatch=escolher&vinculo=1");
-
-
-
-               // page.navigate("https://sighomologa.ifrs.edu.br/sigaa/portais/docente/docente.jsf");
-
-                page.click("#portais > ul > li.docente.on > a");
-
-                page.hover("span.ThemeOfficeMainFolderText:has-text('Extensão')");
-
-                // Espera o submenu aparecer
-                page.waitForSelector("div.ThemeOfficeSubMenu#cmSubMenuID33", new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
-
-                // Passa o mouse sobre o item "Planos de Trabalho" para exibir o segundo submenu
-                page.hover("div.ThemeOfficeSubMenu#cmSubMenuID33 tr.ThemeOfficeMenuItem:has(td.ThemeOfficeMenuFolderText:has-text('Ações de Extensão'))");
-
-                // Espera o segundo submenu aparecer
-                page.waitForSelector("div.ThemeOfficeSubMenu#cmSubMenuID34", new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
-
-                page.hover("div.ThemeOfficeSubMenu#cmSubMenuID34 tr.ThemeOfficeMenuItem:has(td.ThemeOfficeMenuFolderText:has-text('Gerenciar Ações'))");
-
-                page.waitForSelector("div.ThemeOfficeSubMenu#cmSubMenuID37", new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
-
-                page.click("div.ThemeOfficeSubMenu#cmSubMenuID37 tr.ThemeOfficeMenuItem:has(td.ThemeOfficeMenuItemText:has-text('Listar Minhas Ações'))");
-
-
-                //page.wait(5000);
-
-                page.screenshot(new Page.ScreenshotOptions().setPath(Paths.get("screenshot.png")));
-
-                // Clica no item "Listar Meus Planos de Trabalho"
-                /*
-
-
-
-
-
-
-
-
-            }
-        } catch (Exception e) {
-            logger.error( "Erro ao obter dados do usuário", e);
-            return Response.status(Response.Status.UNAUTHORIZED).build();
-        }
-        return Response.ok(loginDTO).build();
-
-    }
-    */
 

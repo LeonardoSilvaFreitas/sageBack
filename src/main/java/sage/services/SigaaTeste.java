@@ -60,20 +60,22 @@ public class SigaaTeste {
         SigaaTeste sigaaTeste = new SigaaTeste();
 
         try {
-            String userCpf = "59629304449"; // Substitua pelo CPF correto
+            String userCpf = "03320058010"; // Substitua pelo CPF correto
             sigaaTeste.cpfAtual = userCpf; // Armazena o CPF para associar aos eventos
-            if (sigaaTeste.performLogin(userCpf, "alexdgis01")) {
+            if (sigaaTeste.performLogin(userCpf, "4460Chd1*")) {
                 System.out.println("Login realizado com sucesso!");
                 sigaaTeste.performEscolhaVinculo();
                 sigaaTeste.performPaginaDocente(userCpf);
-
             } else {
                 System.out.println("Falha no login.");
             }
+        } catch (IllegalStateException e) {
+            System.err.println("Erro de autorização: " + e.getMessage());
         } catch (IOException e) {
             System.err.println("Erro ao executar operações: " + e.getMessage());
         }
     }
+
 
     private boolean performLogin(String user, String password) throws IOException {
         RequestBody formBody = new FormBody.Builder()
@@ -142,27 +144,49 @@ public class SigaaTeste {
 
     //comentário aqui
     private void performPaginaDocente(String cpf) throws IOException {
-
-
         Request postRequest = new Request.Builder()
                 .url(SIGAA_URL_DOCENTE)
-
                 .header("User-Agent", USER_AGENT)
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .build();
 
         try (Response response = client.newCall(postRequest).execute()) {
+            String responseBody = response.body().string();
+
             if (response.isSuccessful()) {
-                System.out.println("Requisição POST bem-sucedida!");
-                String html = response.body().string();
-                parseHtml(html, cpf);
-               // Chama o método de extração dos dados pessoais
+                // Parse do HTML retornado
+                Document document = Jsoup.parse(responseBody);
+
+                // Localizando a mensagem de erro na estrutura: div#container > div#conteudo > table > tbody > tr > td
+                Element erroElement = document.selectFirst("div#container > div#conteudo > table > tbody > tr > td");
+
+                if (erroElement != null) {
+                    String erroTexto = erroElement.text();
+
+                    // Verifica "Acesso Negado"
+                    if (erroTexto.contains("Acesso Negado")) {
+                        System.err.println("Erro detectado: Acesso Negado.");
+                        throw new IllegalStateException("Acesso Negado: Usuário Não Autorizado.");
+                    }
+
+                    // Verifica "Usuário Não Autorizado"
+                    if (erroTexto.contains("Usuário Não Autorizado")) {
+                        System.err.println("Erro detectado: Usuário Não Autorizado.");
+                        throw new IllegalStateException("Acesso Negado: Usuário Não Autorizado.");
+                    }
+                }
+
+                // Caso não encontre mensagens de erro, processa o HTML
+                System.out.println("Requisição para a página docente bem-sucedida!");
+                parseHtml(responseBody, cpf);
             } else {
-                System.err.println("Falha na requisição POST: " + response.code());
-                System.err.println("Corpo da Resposta: " + response.body().string());
+                System.err.println("Falha na requisição POST para a página docente: " + response.code());
+                System.err.println("Corpo da Resposta: " + responseBody);
+                throw new IOException("Erro ao acessar a página docente.");
             }
         }
     }
+
 
     private void parseHtml(String html, String cpf) {
         Document document = Jsoup.parse(html);
