@@ -95,11 +95,6 @@ public class LoginService {
         }
     }
 
-
-
-
-
-
     private TokenResponse gerarTokenJWT(String cpf) {
         String token = Jwt.issuer("sage-app")
                 .subject(cpf)
@@ -140,8 +135,6 @@ public class LoginService {
         }
     }
 
-
-
     private void performEscolhaVinculo() throws IOException {
         Request request = new Request.Builder()
                 .url(SIGAA_ESCOLHA_VINCULO)
@@ -163,8 +156,6 @@ public class LoginService {
         }
     }
 
-
-
     private void followRedirect(String newLocation) throws IOException {
         String url = newLocation.startsWith("http") ? newLocation : "https://sig.ifrs.edu.br" + newLocation;
         Request redirectRequest = new Request.Builder()
@@ -183,37 +174,29 @@ public class LoginService {
     }
 
     private void performPaginaDocente(String cpf) throws IOException {
+        RequestBody formBody = new FormBody.Builder()
+                .add("menu:j_id_jsp_798026457_3", "menu:j_id_jsp_798026457_3")
+                .add("jscook_action", "menu_j_id_jsp_798026457_3_j_id_jsp_798026457_4_menu:A]#{atividadeExtensao.listarMinhasAtividades}")
+                .add("javax.faces.ViewState", "j_id2")
+                .build();
+
         Request postRequest = new Request.Builder()
                 .url(SIGAA_URL_DOCENTE)
+                .post(formBody)
                 .header("User-Agent", USER_AGENT)
                 .header("Content-Type", "application/x-www-form-urlencoded")
                 .build();
 
         try (Response response = client.newCall(postRequest).execute()) {
-            String responseBody = response.body().string();
-
             if (response.isSuccessful()) {
-                Document document = Jsoup.parse(responseBody);
-                System.out.println("Passou aqui na página docente");
-
-                Element erroElement = document.selectFirst("div#container > div#conteudo > table > tbody > tr > td");
-                if (erroElement != null) {
-                    String erroTexto = erroElement.text();
-
-                    if (erroTexto.contains("Acesso Negado") || erroTexto.contains("Usuário Não Autorizado")) {
-                        throw new IllegalStateException("Acesso Negado: Usuário Não Autorizado.");
-                    }
-                }
-
-                System.out.println("Requisição para a página docente bem-sucedida!");
-                parseHtml(responseBody, cpf);
+                System.out.println("Requisição POST bem-sucedida!");
+                parseHtml(response.body().string(), cpf);
             } else {
-                throw new IOException("Erro ao acessar a página docente.");
+                System.err.println("Falha na requisição POST: " + response.code());
+                System.err.println("Corpo da Resposta: " + response.body().string());
             }
         }
     }
-
-
 
     private void obterDetalhesEvento(int id, String cpf) throws IOException {
         RequestBody formDetalheEvento = new FormBody.Builder()
@@ -264,7 +247,7 @@ public class LoginService {
             Elements cells = row.select("td");
             if (cells.size() >= 5) {
                 Element imgElement = cells.get(4).selectFirst("img[onclick^=exibirOpcoes]");
-                String id = imgElement != null ? imgElement.attr("onclick").replaceAll(".*exibirOpcoes\\((\\d+)\\).*", "$1") : "ID não encontrado";
+                String id = imgElement != null ? imgElement.attr("onclick").replaceAll(".*exibirOpcoes\\((\\d+)\\).*", "$1") : "Evento não encontrado ou você não é servidor";
 
                 try {
                     obterDetalhesEvento(Integer.parseInt(id), cpf);
