@@ -143,18 +143,35 @@ public class LoginService {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
+            if (response.body() == null) {
+                throw new IOException("Resposta sem corpo ao tentar escolher vínculo.");
+            }
+
+            String responseBody = response.body().string();
+
             if (response.isRedirect()) {
                 String newLocation = response.header("Location");
                 if (newLocation != null) {
                     followRedirect(newLocation);
                 }
             } else if (response.isSuccessful()) {
-                System.out.println("Requisição para escolha de vínculo realizada com sucesso!");
+                if (responseBody.contains("Siape:")) {
+                    System.out.println("Requisição para escolha de vínculo realizada com sucesso e validação 'Siape' confirmada.");
+                    String newLocation = response.header("Location");
+                    if (newLocation != null) {
+                        followRedirect(newLocation);
+                    }
+                } else {
+                    System.err.println("Acesso Negado: Usuário não autorizado para escolha de vínculo.");
+                    throw new IllegalStateException("Acesso Negado: Usuário Não Autorizado.");
+                }
             } else {
                 System.err.println("Falha na requisição de escolha de vínculo: " + response.code());
+                throw new IOException("Erro na requisição de escolha de vínculo. Código: " + response.code());
             }
         }
     }
+
 
     private void followRedirect(String newLocation) throws IOException {
         String url = newLocation.startsWith("http") ? newLocation : "https://sig.ifrs.edu.br" + newLocation;
@@ -244,20 +261,33 @@ public class LoginService {
         Document doc = Jsoup.parse(html);
         Elements rows = doc.select("table.listagem:first-of-type tbody tr");
 
+        if (rows.isEmpty()) {
+            // Lista vazia: nenhuma linha encontrada
+            System.out.println("Nenhum evento encontrado para o CPF: " + cpf + ". Continuando o processamento...");
+            return; // Retorna sem lançar erros
+        }
+
         for (Element row : rows) {
             Elements cells = row.select("td");
             if (cells.size() >= 5) {
                 Element imgElement = cells.get(4).selectFirst("img[onclick^=exibirOpcoes]");
-                String id = imgElement != null ? imgElement.attr("onclick").replaceAll(".*exibirOpcoes\\((\\d+)\\).*", "$1") : "Evento não encontrado ou você não é servidor";
+                String id = imgElement != null
+                        ? imgElement.attr("onclick").replaceAll(".*exibirOpcoes\\((\\d+)\\).*", "$1")
+                        : null;
 
-                try {
-                    obterDetalhesEvento(Integer.parseInt(id), cpf);
-                } catch (IOException e) {
-                    System.err.println("Erro ao obter detalhes do evento: " + e.getMessage());
+                if (id != null) {
+                    try {
+                        obterDetalhesEvento(Integer.parseInt(id), cpf);
+                    } catch (IOException e) {
+                        System.err.println("Erro ao obter detalhes do evento: " + e.getMessage());
+                    }
+                } else {
+                    System.out.println("Nenhum ID de evento encontrado nesta linha. Ignorando.");
                 }
             }
         }
     }
+
 
     private void salvarEventosNoBanco(String cpf) {
         try {
