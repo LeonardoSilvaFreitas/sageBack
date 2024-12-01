@@ -48,12 +48,17 @@ public class Evento {
     private List<DataSala> dataLocais; // Utilizando a nova classe modelo
 
     @JsonProperty("cargaHoraria")
-    String cargaHoraria;
+    private String cargaHoraria;
+
+    @JsonProperty("dataProcessamento")
+    private long dataProcessamento; // Campo para armazenar dataProcessamento como timestamp
 
     public Evento() {
     }
 
-    public Evento(String id, String nome, String descricao, String status, List<Map<String, Object>> reservas, String cpf, String codigo, String periodo, String tipo, String financiamento, String palavrasChaves, String programacao, List<DataSala> dataLocais, String cargaHoraria) {
+    public Evento(String id, String nome, String descricao, String status, List<Map<String, Object>> reservas,
+                  String cpf, String codigo, String periodo, String tipo, String financiamento, String palavrasChaves,
+                  String programacao, List<DataSala> dataLocais, String cargaHoraria, long dataProcessamento) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -68,17 +73,10 @@ public class Evento {
         this.programacao = programacao;
         this.dataLocais = dataLocais;
         this.cargaHoraria = cargaHoraria;
+        this.dataProcessamento = dataProcessamento;
     }
 
-    // Getters e setters para todos os campos, incluindo os do ProcessarEvento
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    // Getters e Setters para todos os campos
 
     public String getId() {
         return id;
@@ -86,6 +84,14 @@ public class Evento {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getDescricao() {
@@ -176,7 +182,19 @@ public class Evento {
         this.dataLocais = dataLocais;
     }
 
-    public String getCargaHoraria() {return cargaHoraria;}
+    public String getCargaHoraria() {
+        return cargaHoraria;
+    }
 
-    public void setCargaHoraria(String cargaHoraria) {this.cargaHoraria = cargaHoraria;}
+    public void setCargaHoraria(String cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
+
+    public long getDataProcessamento() {
+        return dataProcessamento;
+    }
+
+    public void setDataProcessamento(long dataProcessamento) {
+        this.dataProcessamento = dataProcessamento;
+    }
 }

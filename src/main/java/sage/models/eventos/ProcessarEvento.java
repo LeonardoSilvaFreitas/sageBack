@@ -2,6 +2,8 @@ package sage.models.eventos;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.time.LocalDate;
+
 public class ProcessarEvento {
 
     @JsonProperty("cpf")
@@ -40,10 +42,13 @@ public class ProcessarEvento {
     @JsonProperty("status")
     String status;
 
+    @JsonProperty("dataProcessamento")
+    long dataProcessamento;
+
     public ProcessarEvento() {
     }
 
-    public ProcessarEvento(String cpf, String codigo, String titulo, String resumo, String periodo, String tipo, String financiamento, String palavrasChaves, String programacao, boolean excluido, String cargaHoraria, String status) {
+    public ProcessarEvento(String cpf, String codigo, String titulo, String resumo, String periodo, String tipo, String financiamento, String palavrasChaves, String programacao, boolean excluido, String cargaHoraria, String status, long dataProcessamento) {
         this.cpf = cpf;
         this.codigo = codigo;
         this.titulo = titulo;
@@ -56,6 +61,7 @@ public class ProcessarEvento {
         this.excluido = excluido;
         this.cargaHoraria = cargaHoraria;
         this.status = status;
+        this.dataProcessamento = dataProcessamento;
     }
 
     public String getCpf() {
@@ -152,5 +158,13 @@ public class ProcessarEvento {
 
     public void setCargaHoraria(String cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
+    }
+
+    public long getDataProcessamento() {
+        return dataProcessamento;
+    }
+
+    public void setDataProcessamento(long dataProcessamento) {
+        this.dataProcessamento = dataProcessamento;
     }
 }

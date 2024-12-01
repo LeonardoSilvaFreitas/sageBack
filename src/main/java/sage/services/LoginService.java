@@ -24,11 +24,14 @@ import sage.models.login.Login;
 import sage.models.login.TokenResponse;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 @ApplicationScoped
 public class LoginService {
@@ -249,8 +252,10 @@ public class LoginService {
                 String programacao = programacaoElement != null ? programacaoElement.text() : "Programação não encontrada";
                 String cargaHoraria = document.select("th:contains(Carga Horária:) + td").text();
                 String status = "Sem Status";
+                long dataProcessamento = Instant.now().toEpochMilli();
 
-                eventos.add(new ProcessarEvento(cpf, codigo, titulo, resumo, periodo, tipo, fonteFinanciamento, palavrasChave, programacao, false, cargaHoraria, status));
+
+                eventos.add(new ProcessarEvento(cpf, codigo, titulo, resumo, periodo, tipo, fonteFinanciamento, palavrasChave, programacao, false, cargaHoraria, status, dataProcessamento));
             } else {
                 System.err.println("Falha na requisição ao pegar evento POST: " + response.code());
                 System.err.println("Corpo da Resposta: " + response.body().string());
@@ -325,7 +330,7 @@ public class LoginService {
                 eventoData.put("excluido", evento.isExcluido());
                 eventoData.put("cargaHoraria", evento.getCargaHoraria());
                 eventoData.put("status", evento.getStatus());
-
+                eventoData.put("dataProcessamento", evento.getDataProcessamento());
 
                 // Insere o documento com um ID gerado automaticamente
                 DocumentReference docRef = db.collection("eventos").document();
