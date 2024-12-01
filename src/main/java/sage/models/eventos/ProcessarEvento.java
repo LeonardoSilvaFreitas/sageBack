@@ -34,13 +34,16 @@ public class ProcessarEvento {
     @JsonProperty("excluido")
     boolean excluido;
 
+    @JsonProperty("cargaHoraria")
+    String cargaHoraria;
+
     @JsonProperty("status")
     String status;
 
     public ProcessarEvento() {
     }
 
-    public ProcessarEvento(String cpf, String codigo, String titulo, String resumo, String periodo, String tipo, String financiamento, String palavrasChaves, String programacao, boolean excluido, String status) {
+    public ProcessarEvento(String cpf, String codigo, String titulo, String resumo, String periodo, String tipo, String financiamento, String palavrasChaves, String programacao, boolean excluido, String cargaHoraria, String status) {
         this.cpf = cpf;
         this.codigo = codigo;
         this.titulo = titulo;
@@ -51,6 +54,7 @@ public class ProcessarEvento {
         this.palavrasChaves = palavrasChaves;
         this.programacao = programacao;
         this.excluido = excluido;
+        this.cargaHoraria = cargaHoraria;
         this.status = status;
     }
 
@@ -140,5 +144,13 @@ public class ProcessarEvento {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getCargaHoraria() {
+        return cargaHoraria;
+    }
+
+    public void setCargaHoraria(String cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
     }
 }

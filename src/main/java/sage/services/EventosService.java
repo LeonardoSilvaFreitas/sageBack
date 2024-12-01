@@ -77,6 +77,7 @@ public class EventosService {
             updateFields.put("codigo", evento.getCodigo());
             updateFields.put("status", evento.getStatus());
             updateFields.put("periodo", evento.getPeriodo());
+            updateFields.put("cargaHoraria", evento.getCargaHoraria());
             updateFields.put("tipo", evento.getTipo());
             updateFields.put("financiamento", evento.getFinanciamento());
             updateFields.put("palavrasChaves", evento.getPalavrasChaves());

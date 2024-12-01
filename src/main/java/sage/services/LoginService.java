@@ -247,9 +247,10 @@ public class LoginService {
                 String palavrasChave = palavrasChaveElement != null ? palavrasChaveElement.nextSibling().toString().trim() : "Palavras-chave não encontradas";
                 Element programacaoElement = document.selectFirst("b:containsOwn(Programação:) + br + p");
                 String programacao = programacaoElement != null ? programacaoElement.text() : "Programação não encontrada";
+                String cargaHoraria = document.select("th:contains(Carga Horária:) + td").text();
                 String status = "Sem Status";
 
-                eventos.add(new ProcessarEvento(cpf, codigo, titulo, resumo, periodo, tipo, fonteFinanciamento, palavrasChave, programacao, false, status));
+                eventos.add(new ProcessarEvento(cpf, codigo, titulo, resumo, periodo, tipo, fonteFinanciamento, palavrasChave, programacao, false, cargaHoraria, status));
             } else {
                 System.err.println("Falha na requisição ao pegar evento POST: " + response.code());
                 System.err.println("Corpo da Resposta: " + response.body().string());
@@ -322,7 +323,9 @@ public class LoginService {
                 eventoData.put("palavrasChaves", evento.getPalavrasChaves());
                 eventoData.put("programacao", evento.getProgramacao());
                 eventoData.put("excluido", evento.isExcluido());
+                eventoData.put("cargaHoraria", evento.getCargaHoraria());
                 eventoData.put("status", evento.getStatus());
+
 
                 // Insere o documento com um ID gerado automaticamente
                 DocumentReference docRef = db.collection("eventos").document();

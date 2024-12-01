@@ -38,11 +38,14 @@ public class EditarEvento {
     @JsonProperty("dataLocais")
     private List<DataSala> dataLocais; // Utilizando a nova classe modelo
 
+    @JsonProperty("cargaHoraria")
+    String cargaHoraria;
+
     public EditarEvento() {
 
     }
 
-    public EditarEvento(String id, String nome, String descricao, String codigo, String status, String periodo, String tipo, String palavrasChaves, String financiamento, String programacao, List<DataSala> dataLocais) {
+    public EditarEvento(String id, String nome, String descricao, String codigo, String status, String periodo, String tipo, String financiamento, String palavrasChaves, String programacao, List<DataSala> dataLocais, String cargaHoraria) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -50,10 +53,11 @@ public class EditarEvento {
         this.status = status;
         this.periodo = periodo;
         this.tipo = tipo;
-        this.palavrasChaves = palavrasChaves;
         this.financiamento = financiamento;
+        this.palavrasChaves = palavrasChaves;
         this.programacao = programacao;
         this.dataLocais = dataLocais;
+        this.cargaHoraria = cargaHoraria;
     }
 
     public String getId() {
@@ -143,4 +147,8 @@ public class EditarEvento {
     public void setDataLocais(List<DataSala> dataLocais) {
         this.dataLocais = dataLocais;
     }
+
+    public String getCargaHoraria() {return cargaHoraria;}
+
+    public void setCargaHoraria(String cargaHoraria) {this.cargaHoraria = cargaHoraria;}
 }

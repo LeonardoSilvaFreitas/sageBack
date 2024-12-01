@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @ApplicationScoped
 public class RelatorioService {
@@ -60,7 +62,18 @@ public class RelatorioService {
             // Dados do evento
             DocumentSnapshot eventoDoc = db.collection("eventos").document(eventoId).get().get();
             String tituloAcao = eventoDoc.exists() ? eventoDoc.getString("nome") : "Evento Desconhecido";
-            int cargaHorariaTotal = eventoDoc.exists() ? eventoDoc.getLong("cargaHoraria").intValue() : 0;
+            int cargaHorariaTotal = 0;
+
+            if (eventoDoc.exists() && eventoDoc.getString("cargaHoraria") != null) {
+                String cargaHorariaStr = eventoDoc.getString("cargaHoraria");
+                // Usa regex para capturar apenas o número no início da string
+                Matcher matcher = Pattern.compile("(\\d+)").matcher(cargaHorariaStr);
+                if (matcher.find()) {
+                    cargaHorariaTotal = Integer.parseInt(matcher.group(1)); // Extrai o número
+                } else {
+                    System.out.println("Formato de carga horária inválido: " + cargaHorariaStr);
+                }
+            }
 
             // Datas QRCode
             List<String> datasQRCode = new ArrayList<>();
