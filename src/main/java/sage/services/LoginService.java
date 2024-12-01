@@ -102,7 +102,7 @@ public class LoginService {
         String token = Jwt.issuer("sage-app")
                 .subject(cpf)
                 .groups("coordenador")
-                .expiresIn(10800)  // Token válido por 3 horas
+                .expiresIn(86400)  // Token válido por 3 horas
                 .sign();
 
         return new TokenResponse(token);
