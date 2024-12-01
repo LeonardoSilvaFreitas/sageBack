@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 @ApplicationScoped
 public class RelatorioService {
@@ -82,7 +85,13 @@ public class RelatorioService {
                     .forEach(doc -> datasQRCode.add(doc.getString("data")));
 
             // Ordena explicitamente as datas antes de adicioná-las
-            datasQRCode.sort(String::compareTo);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            datasQRCode.sort((date1, date2) -> {
+                LocalDate localDate1 = LocalDate.parse(date1, formatter);
+                LocalDate localDate2 = LocalDate.parse(date2, formatter);
+                return localDate1.compareTo(localDate2);
+            });
 
             // Mescla células para "PERIODO DE REALIZAÇÃO"
             int dataColumns = datasQRCode.size();

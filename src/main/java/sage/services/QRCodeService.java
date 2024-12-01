@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.util.*;
 import java.util.Base64;
 import java.util.concurrent.ExecutionException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 
 @ApplicationScoped
 public class QRCodeService {
@@ -71,7 +74,14 @@ public class QRCodeService {
             }
 
             // Ordena a lista de QR Codes pela data
-            qrCodesList.sort(Comparator.comparing(QRCodeResposta::getData));
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+            // Ordena a lista
+            qrCodesList.sort((q1, q2) -> {
+                LocalDate date1 = LocalDate.parse(q1.getData(), formatter);
+                LocalDate date2 = LocalDate.parse(q2.getData(), formatter);
+                return date1.compareTo(date2);
+            });
 
             return Response.ok(qrCodesList).build();
         } catch (Exception e) {
