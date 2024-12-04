@@ -146,31 +146,17 @@ public class LoginService {
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
-            if (response.body() == null) {
-                throw new IOException("Resposta sem corpo ao tentar escolher vínculo.");
-            }
-
-            String responseBody = response.body().string();
-
             if (response.isRedirect()) {
                 String newLocation = response.header("Location");
                 if (newLocation != null) {
                     followRedirect(newLocation);
                 }
+
             } else if (response.isSuccessful()) {
-                if (responseBody.contains("Siape:")) {
-                    System.out.println("Requisição para escolha de vínculo realizada com sucesso e validação 'Siape' confirmada.");
-                    String newLocation = response.header("Location");
-                    if (newLocation != null) {
-                        followRedirect(newLocation);
-                    }
-                } else {
-                    System.err.println("Acesso Negado: Usuário não autorizado para escolha de vínculo.");
-                    throw new IllegalStateException("Acesso Negado: Usuário Não Autorizado.");
-                }
+
+                System.out.println("Requisição para escolha de vínculo realizada com sucesso!");
             } else {
                 System.err.println("Falha na requisição de escolha de vínculo: " + response.code());
-                throw new IOException("Erro na requisição de escolha de vínculo. Código: " + response.code());
             }
         }
     }
