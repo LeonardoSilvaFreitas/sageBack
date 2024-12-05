@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>EditarEvento</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            sage
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter="sage/JVM">JVM</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="sage::sage.models.eventos/EditarEvento///PointingToDeclaration//1458320304">
+  <div class="breadcrumbs"><a href="../../../index.html">sage</a><span class="delimiter">/</span><a href="../index.html">sage.models.eventos</a><span class="delimiter">/</span><span class="current">EditarEvento</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Editar</span><wbr></wbr><span><span>Evento</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace"><span class="token keyword">public </span><span class="token keyword">class </span><a href="index.html">EditarEvento</a></div><p class="paragraph">Classe que representa a edição de um evento.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-87033627%2FConstructors%2F1458320304" anchor-label="EditarEvento" id="-87033627%2FConstructors%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-editar-evento.html"><span>Editar</span><wbr></wbr><span><span>Evento</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-87033627%2FConstructors%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="-editar-evento.html"><span class="token function">EditarEvento</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Construtor padrão.</div><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="-editar-evento.html"><span class="token function">EditarEvento</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> id<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> nome<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> descricao<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> codigo<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> status<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> periodo<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> tipo<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> financiamento<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> palavrasChaves<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> programacao<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="../-data-sala/index.html">DataSala</a><span class="token operator">&gt;</span> dataLocais<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> cargaHoraria</span></span><span class="token punctuation">)</span></div><div class="brief ">Construtor com parâmetros.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-989895637%2FProperties%2F1458320304" anchor-label="cargaHoraria" id="-989895637%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-989895637%2FProperties%2F1458320304"><span>carga</span><wbr></wbr><span><span>Horaria</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-989895637%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="index.html#-989895637%2FProperties%2F1458320304">cargaHoraria</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-135744456%2FProperties%2F1458320304" anchor-label="codigo" id="-135744456%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-135744456%2FProperties%2F1458320304"><span><span>codigo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-135744456%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="index.html#-135744456%2FProperties%2F1458320304">codigo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1982334460%2FProperties%2F1458320304" anchor-label="dataLocais" id="1982334460%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1982334460%2FProperties%2F1458320304"><span>data</span><wbr></wbr><span><span>Locais</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1982334460%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="../-data-sala/index.html">DataSala</a><span class="token operator">&gt;</span> <a href="index.html#1982334460%2FProperties%2F1458320304">dataLocais</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1393178656%2FProperties%2F1458320304" anchor-label="descricao" id="1393178656%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1393178656%2FProperties%2F1458320304"><span><span>descricao</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1393178656%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="index.html#1393178656%2FProperties%2F1458320304">descricao</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1743904667%2FProperties%2F1458320304" anchor-label="financiamento" id="1743904667%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1743904667%2FProperties%2F1458320304"><span><span>financiamento</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1743904667%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="index.html#1743904667%2FProperties%2F1458320304">financiamento</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1124055542%2FProperties%2F1458320304" anchor-label="id" id="1124055542%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1124055542%2FProperties%2F1458320304"><span><span>id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1124055542%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="index.html#1124055542%2FProperties%2F1458320304">id</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-484457288%2FProperties%2F1458320304" anchor-label="nome" id="-484457288%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-484457288%2FProperties%2F1458320304"><span><span>nome</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-484457288%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="index.html#-484457288%2FProperties%2F1458320304">nome</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="726754677%2FProperties%2F1458320304" anchor-label="palavrasChaves" id="726754677%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#726754677%2FProperties%2F1458320304"><span>palavras</span><wbr></wbr><span><span>Chaves</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="726754677%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="index.html#726754677%2FProperties%2F1458320304">palavrasChaves</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1912799685%2FProperties%2F1458320304" anchor-label="periodo" id="-1912799685%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-1912799685%2FProperties%2F1458320304"><span><span>periodo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1912799685%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="index.html#-1912799685%2FProperties%2F1458320304">periodo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="439183733%2FProperties%2F1458320304" anchor-label="programacao" id="439183733%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#439183733%2FProperties%2F1458320304"><span><span>programacao</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="439183733%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="index.html#439183733%2FProperties%2F1458320304">programacao</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1354001663%2FProperties%2F1458320304" anchor-label="status" id="1354001663%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#1354001663%2FProperties%2F1458320304"><span><span>status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1354001663%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="index.html#1354001663%2FProperties%2F1458320304">status</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-192322307%2FProperties%2F1458320304" anchor-label="tipo" id="-192322307%2FProperties%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="index.html#-192322307%2FProperties%2F1458320304"><span><span>tipo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-192322307%2FProperties%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="index.html#-192322307%2FProperties%2F1458320304">tipo</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="954069517%2FFunctions%2F1458320304" anchor-label="getCargaHoraria" id="954069517%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-carga-horaria.html"><span>get</span><wbr></wbr><span>Carga</span><wbr></wbr><span><span>Horaria</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="954069517%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-carga-horaria.html"><span class="token function">getCargaHoraria</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém a carga horária do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="565695386%2FFunctions%2F1458320304" anchor-label="getCodigo" id="565695386%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-codigo.html"><span>get</span><wbr></wbr><span><span>Codigo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="565695386%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-codigo.html"><span class="token function">getCodigo</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém o código do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-625695650%2FFunctions%2F1458320304" anchor-label="getDataLocais" id="-625695650%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-data-locais.html"><span>get</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Locais</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-625695650%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="../-data-sala/index.html">DataSala</a><span class="token operator">&gt;</span> <a href="get-data-locais.html"><span class="token function">getDataLocais</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém a lista de datas e locais do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1323350658%2FFunctions%2F1458320304" anchor-label="getDescricao" id="-1323350658%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-descricao.html"><span>get</span><wbr></wbr><span><span>Descricao</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1323350658%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-descricao.html"><span class="token function">getDescricao</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém a descrição do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1877282297%2FFunctions%2F1458320304" anchor-label="getFinanciamento" id="1877282297%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-financiamento.html"><span>get</span><wbr></wbr><span><span>Financiamento</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1877282297%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-financiamento.html"><span class="token function">getFinanciamento</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém o financiamento do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1903811160%2FFunctions%2F1458320304" anchor-label="getId" id="1903811160%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-id.html"><span>get</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1903811160%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-id.html"><span class="token function">getId</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém o ID do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1536382106%2FFunctions%2F1458320304" anchor-label="getNome" id="1536382106%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-nome.html"><span>get</span><wbr></wbr><span><span>Nome</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1536382106%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-nome.html"><span class="token function">getNome</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém o nome do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="566493911%2FFunctions%2F1458320304" anchor-label="getPalavrasChaves" id="566493911%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-palavras-chaves.html"><span>get</span><wbr></wbr><span>Palavras</span><wbr></wbr><span><span>Chaves</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="566493911%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-palavras-chaves.html"><span class="token function">getPalavrasChaves</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém as palavras-chave do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1643001063%2FFunctions%2F1458320304" anchor-label="getPeriodo" id="-1643001063%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-periodo.html"><span>get</span><wbr></wbr><span><span>Periodo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1643001063%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-periodo.html"><span class="token function">getPeriodo</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém o período do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1194628947%2FFunctions%2F1458320304" anchor-label="getProgramacao" id="1194628947%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-programacao.html"><span>get</span><wbr></wbr><span><span>Programacao</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1194628947%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-programacao.html"><span class="token function">getProgramacao</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém a programação do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2055441505%2FFunctions%2F1458320304" anchor-label="getStatus" id="2055441505%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-status.html"><span>get</span><wbr></wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2055441505%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-status.html"><span class="token function">getStatus</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém o status do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1828517087%2FFunctions%2F1458320304" anchor-label="getTipo" id="1828517087%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-tipo.html"><span>get</span><wbr></wbr><span><span>Tipo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1828517087%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> <a href="get-tipo.html"><span class="token function">getTipo</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief ">Obtém o tipo do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1487879044%2FFunctions%2F1458320304" anchor-label="setCargaHoraria" id="-1487879044%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-carga-horaria.html"><span>set</span><wbr></wbr><span>Carga</span><wbr></wbr><span><span>Horaria</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1487879044%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-carga-horaria.html"><span class="token function">setCargaHoraria</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> cargaHoraria</span></span><span class="token punctuation">)</span></div><div class="brief ">Define a carga horária do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1119890679%2FFunctions%2F1458320304" anchor-label="setCodigo" id="-1119890679%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-codigo.html"><span>set</span><wbr></wbr><span><span>Codigo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1119890679%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-codigo.html"><span class="token function">setCodigo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> codigo</span></span><span class="token punctuation">)</span></div><div class="brief ">Define o código do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1136788015%2FFunctions%2F1458320304" anchor-label="setDataLocais" id="-1136788015%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-data-locais.html"><span>set</span><wbr></wbr><span>Data</span><wbr></wbr><span><span>Locais</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1136788015%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-data-locais.html"><span class="token function">setDataLocais</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">List</a><span class="token operator">&lt;</span><a href="../-data-sala/index.html">DataSala</a><span class="token operator">&gt;</span> dataLocais</span></span><span class="token punctuation">)</span></div><div class="brief ">Define a lista de datas e locais do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1145338491%2FFunctions%2F1458320304" anchor-label="setDescricao" id="-1145338491%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-descricao.html"><span>set</span><wbr></wbr><span><span>Descricao</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1145338491%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-descricao.html"><span class="token function">setDescricao</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> descricao</span></span><span class="token punctuation">)</span></div><div class="brief ">Define a descrição do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-339799552%2FFunctions%2F1458320304" anchor-label="setFinanciamento" id="-339799552%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-financiamento.html"><span>set</span><wbr></wbr><span><span>Financiamento</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-339799552%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-financiamento.html"><span class="token function">setFinanciamento</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> financiamento</span></span><span class="token punctuation">)</span></div><div class="brief ">Define o financiamento do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2146400199%2FFunctions%2F1458320304" anchor-label="setId" id="2146400199%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-id.html"><span>set</span><wbr></wbr><span><span>Id</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2146400199%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-id.html"><span class="token function">setId</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> id</span></span><span class="token punctuation">)</span></div><div class="brief ">Define o ID do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-612032247%2FFunctions%2F1458320304" anchor-label="setNome" id="-612032247%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-nome.html"><span>set</span><wbr></wbr><span><span>Nome</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-612032247%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-nome.html"><span class="token function">setNome</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> nome</span></span><span class="token punctuation">)</span></div><div class="brief ">Define o nome do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-726584250%2FFunctions%2F1458320304" anchor-label="setPalavrasChaves" id="-726584250%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-palavras-chaves.html"><span>set</span><wbr></wbr><span>Palavras</span><wbr></wbr><span><span>Chaves</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-726584250%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-palavras-chaves.html"><span class="token function">setPalavrasChaves</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> palavrasChaves</span></span><span class="token punctuation">)</span></div><div class="brief ">Define as palavras-chave do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="664963104%2FFunctions%2F1458320304" anchor-label="setPeriodo" id="664963104%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-periodo.html"><span>set</span><wbr></wbr><span><span>Periodo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="664963104%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-periodo.html"><span class="token function">setPeriodo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> periodo</span></span><span class="token punctuation">)</span></div><div class="brief ">Define o período do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1248314790%2FFunctions%2F1458320304" anchor-label="setProgramacao" id="-1248314790%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-programacao.html"><span>set</span><wbr></wbr><span><span>Programacao</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1248314790%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-programacao.html"><span class="token function">setProgramacao</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> programacao</span></span><span class="token punctuation">)</span></div><div class="brief ">Define a programação do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-341369392%2FFunctions%2F1458320304" anchor-label="setStatus" id="-341369392%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-status.html"><span>set</span><wbr></wbr><span><span>Status</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-341369392%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-status.html"><span class="token function">setStatus</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> status</span></span><span class="token punctuation">)</span></div><div class="brief ">Define o status do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-478701746%2FFunctions%2F1458320304" anchor-label="setTipo" id="-478701746%2FFunctions%2F1458320304" data-filterable-set="sage/JVM"></a>
+          <div class="table-row" data-filterable-current="sage/JVM" data-filterable-set="sage/JVM">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-tipo.html"><span>set</span><wbr></wbr><span><span>Tipo</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-478701746%2FFunctions%2F1458320304"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable="sage/JVM"><div class="symbol monospace block"><span class="token keyword">public </span><span class="token keyword"></span>void <a href="set-tipo.html"><span class="token function">setTipo</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword"></span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html">String</a> tipo</span></span><span class="token punctuation">)</span></div><div class="brief ">Define o tipo do evento.</div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
