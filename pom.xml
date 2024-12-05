@@ -134,6 +134,16 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <dokkaPlugins>
+                        <plugin>
+                            <groupId>org.jetbrains.dokka</groupId>
+                            <artifactId>kotlin-as-java-plugin</artifactId>
+                            <version>1.9.20</version>
+                        </plugin>
+                    </dokkaPlugins>
+                    <outputDir>${project.basedir}/docs/</outputDir>
+                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
