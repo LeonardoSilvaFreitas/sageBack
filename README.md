@@ -24,8 +24,10 @@ O SAGE é um serviço de backend desenvolvido em Java utilizando o framework Qua
 ## Estrutura do Projeto
 
 - `src/main/java/sage`: Contém as classes principais do projeto.
+    - `controller`: Contém as controllers dos serviços com retornos de sucesso ou erros. 
     - `services`: Contém os serviços para gerenciamento de eventos, QR Codes, autenticação e relatórios.
     - `models`: Contém as classes de modelo utilizadas no projeto.
+    - `FirebaseInitialize`: Classe que inicializa o banco de dados, realizar as configurações do banco por ela.
 - `src/main/resources`: Contém arquivos de configuração.
     - `application.properties`: Configurações do Quarkus e Firebase.
 
