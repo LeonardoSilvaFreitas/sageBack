@@ -7,6 +7,10 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import sage.models.avaliacao.AvaliacaoRequisicao;
 import sage.services.AvaliacoesService;
+/**
+ * Classe controladora para lidar com requisições relacionadas a "Avaliacoes".
+ * Esta classe é segura para ser acessada apenas por usuários com a função "coordenador".
+ */
 
 @Path("/avaliacoes")
 @RolesAllowed("coordenador")
@@ -14,6 +18,13 @@ public class AvaliacoesController {
 
     @Inject
     AvaliacoesService avaliacoesService;
+
+    /**
+     * Endpoint para listar "Avaliacoes" com base nos dados da requisição fornecidos.
+     *
+     * @param requestData Os dados da requisição contendo o ID do evento.
+     * @return Um objeto Response contendo a lista de "Avaliacoes" ou uma mensagem de erro se o ID do evento estiver ausente.
+     */
 
     @POST
     @Path("/listar")

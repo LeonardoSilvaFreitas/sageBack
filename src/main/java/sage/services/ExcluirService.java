@@ -12,12 +12,21 @@ import org.jboss.logging.Logger;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Serviço para exclusão de eventos.
+ */
 @ApplicationScoped
 public class ExcluirService {
 
     private static final Logger logger = Logger.getLogger(ExcluirService.class);
     private final Firestore db = FirestoreClient.getFirestore();
 
+    /**
+     * Marca um evento como com uma exclusão lógica, atualizando o campo "excluido" para true.
+     *
+     * @param eventoId O ID do evento a ser excluído.
+     * @return Uma resposta indicando o resultado da operação.
+     */
     public Response excluirEvento(String eventoId) {
         try {
             // Referência ao documento do evento no Firestore

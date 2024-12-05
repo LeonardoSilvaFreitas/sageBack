@@ -9,10 +9,17 @@ import jakarta.enterprise.event.Observes;
 
 import java.io.IOException;
 import java.io.InputStream;
-
+/**
+ * Classe responsável por inicializar o Firebase no início da aplicação.
+ */
 @ApplicationScoped
 public class FirebaseInitialize {
 
+    /**
+     * Método chamado no início da aplicação para inicializar o Firebase.
+     *
+     * @param ev O evento de inicialização do Quarkus.
+     */
     void onStart(@Observes StartupEvent ev) {
         try {
             // Verificar se a instância do Firebase já foi inicializada

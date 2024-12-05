@@ -12,7 +12,10 @@ import sage.models.relatorio.RelatorioRequisicao;
 import sage.services.RelatorioService;
 
 import java.util.Map;
-
+/**
+ * Classe controladora para lidar com requisições relacionadas a relatórios.
+ * Esta classe é segura para ser acessada apenas por usuários com a função "coordenador".
+ */
 @Path("/relatorio")
 @RolesAllowed("coordenador")
 public class RelatorioController {
@@ -20,6 +23,12 @@ public class RelatorioController {
     @Inject
     RelatorioService relatorioService;
 
+    /**
+     * Endpoint para gerar um relatório com base nos dados da requisição fornecidos.
+     *
+     * @param requisicao Os dados da requisição contendo o ID do evento.
+     * @return Um objeto Response contendo o relatório gerado ou uma mensagem de erro.
+     */
     @POST
     @Path("/gerarRelatorio")
     @Produces("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")

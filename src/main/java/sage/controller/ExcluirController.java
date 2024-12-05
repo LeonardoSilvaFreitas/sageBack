@@ -10,6 +10,10 @@ import sage.services.ExcluirService;
 
 import java.util.Map;
 
+/**
+ * Classe controladora para lidar com requisições relacionadas à exclusão de eventos.
+ * Esta classe é segura para ser acessada apenas por usuários com a função "coordenador".
+ */
 @Path("/excluir")
 @RolesAllowed("coordenador")
 public class ExcluirController {
@@ -17,6 +21,12 @@ public class ExcluirController {
     @Inject
     ExcluirService excluirService;
 
+    /**
+     * Endpoint para excluir um evento com base no ID do evento fornecido.
+     *
+     * @param payload Os dados da requisição contendo o ID do evento.
+     * @return Um objeto Response indicando o resultado da operação de exclusão.
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

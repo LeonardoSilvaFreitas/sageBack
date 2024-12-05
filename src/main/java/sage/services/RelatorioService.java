@@ -24,14 +24,22 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
 
+/**
+ * Serviço para geração de relatórios de participantes de eventos.
+ */
 @ApplicationScoped
 public class RelatorioService {
 
     private final Firestore db = FirestoreClient.getFirestore();
     private final FirebaseAuth auth = FirebaseAuth.getInstance();
 
+    /**
+     * Gera um relatório em formato Excel para um evento específico.
+     *
+     * @param requisicao A requisição contendo o ID do evento.
+     * @return A resposta contendo o arquivo Excel gerado.
+     */
     public Response gerarRelatorio(RelatorioRequisicao requisicao) {
         String eventoId = requisicao.getEventoId();
 
@@ -67,6 +75,9 @@ public class RelatorioService {
             String tituloAcao = eventoDoc.exists() ? eventoDoc.getString("nome") : "Evento Desconhecido";
             int cargaHorariaTotal = 0;
 
+            /**
+             * Extrai a carga horária do evento, que é um número inteiro no início da string.
+             */
             if (eventoDoc.exists() && eventoDoc.getString("cargaHoraria") != null) {
                 String cargaHorariaStr = eventoDoc.getString("cargaHoraria");
                 // Usa regex para capturar apenas o número no início da string
@@ -79,6 +90,9 @@ public class RelatorioService {
             }
 
             // Datas QRCode
+            /**
+             * Obtém as datas de realização do evento a partir dos QR Codes gerados.
+             */
             List<String> datasQRCode = new ArrayList<>();
             CollectionReference qrCodeRef = db.collection("qrcode");
             qrCodeRef.whereEqualTo("eventoId", eventoId).get().get().getDocuments()
@@ -111,6 +125,9 @@ public class RelatorioService {
             }
 
             // Célula "CARGA_HORARIA"
+            /**
+             * Cria uma célula para a carga horária total do evento.
+             */
             Cell cargaHorariaHeader = headerRow.createCell(6 + dataColumns);
             cargaHorariaHeader.setCellValue("CARGA_HORARIA");
             cargaHorariaHeader.setCellStyle(headerStyle);
@@ -149,6 +166,9 @@ public class RelatorioService {
             }
 
             // Preenche a planilha com os dados dos participantes
+            /**
+             * Preenche a planilha com os dados dos participantes e a carga horária de cada um.
+             */
             int rowIndex = 3;
             for (RelatorioParticipante participante : participantes) {
                 Row row = sheet.createRow(rowIndex++);

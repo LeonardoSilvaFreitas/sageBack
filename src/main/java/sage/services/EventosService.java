@@ -15,12 +15,23 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
+/**
+ * Serviço para manipulação de eventos
+ */
 @ApplicationScoped
 public class EventosService {
 
     private static final Logger logger = Logger.getLogger(EventosService.class);
     private final Firestore db = FirestoreClient.getFirestore();
 
+    /**
+     * Lista eventos para um determinado CPF.
+     *
+     * @param cpf O CPF do usuário.
+     * @param securityContext O contexto de segurança.
+     * @return Uma resposta contendo a lista de eventos.
+     * Verifica se o usuário tem permissão para acessar os eventos, procura nos eventos onde `cpf` é igual ao CPF do usuário e se estão excluídos
+     */
     public Response listarEventos(String cpf, SecurityContext securityContext) {
         List<Evento> eventos = new ArrayList<>();
 
@@ -68,7 +79,12 @@ public class EventosService {
         }
     }
 
-
+    /**
+     * Edita um evento.
+     *
+     * @param evento O evento a ser editado.
+     * @return Uma resposta indicando o resultado da operação.
+     */
     public Response editarEvento(EditarEvento evento) {
         try {
             Map<String, Object> updateFields = new HashMap<>();
@@ -94,6 +110,15 @@ public class EventosService {
         }
     }
 
+    /**
+     * Busca eventos por CPF.
+     *
+     * @param cpf O CPF do usuário.
+     * @param excluidoValue O valor do campo `excluido`.
+     * @return Uma lista de QueryDocumentSnapshots.
+     * @throws InterruptedException Se a operação for interrompida.
+     * @throws ExecutionException Se a operação falhar.
+     */
     private List<QueryDocumentSnapshot> fetchEventosPorCPF(String cpf, Object excluidoValue) throws InterruptedException, ExecutionException {
         ApiFuture<QuerySnapshot> future = db.collection("eventos")
                 .whereEqualTo("cpf", cpf)

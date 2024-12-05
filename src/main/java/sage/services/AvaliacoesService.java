@@ -12,11 +12,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Serviço para manipulação de avaliações.
+ */
 @ApplicationScoped
 public class AvaliacoesService {
 
     private final Firestore db = FirestoreClient.getFirestore();
 
+    /**
+     * Lista as avaliações para um determinado evento.
+     *
+     * @param eventoId O ID do evento.
+     * @return Uma resposta contendo a lista de avaliações com os nomes dos usuários.
+     */
     public Response listarAvaliacoes(String eventoId) {
         List<Avaliacao> avaliacoesComNomes = new ArrayList<>();
 

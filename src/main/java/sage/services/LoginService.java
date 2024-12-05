@@ -13,8 +13,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 import okhttp3.FormBody;
 
-import java.io.FileInputStream;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -30,9 +28,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 
+/**
+ * Serviço de login para autenticação de usuários no sistema através de webscrapping
+ */
 @ApplicationScoped
 public class LoginService {
 
@@ -47,6 +46,10 @@ public class LoginService {
     private final List<ProcessarEvento> eventos = new ArrayList<>(); // Lista para armazenar os eventos
     private final Firestore db = FirestoreClient.getFirestore();
 
+    /**
+     * Construtor do LoginService.
+     * Inicializa o OkHttpClient com configurações de tempo limite e gerenciamento de cookies.
+     */
     public LoginService() {
         this.client = new OkHttpClient.Builder()
                 .connectTimeout(30, TimeUnit.SECONDS)
@@ -67,6 +70,12 @@ public class LoginService {
                 .build();
     }
 
+    /**
+     * Realiza o login do usuário.
+     *
+     * @param loginDTO Objeto contendo as credenciais de login.
+     * @return TokenResponse contendo o token JWT gerado.
+     */
     public TokenResponse login(Login loginDTO) {
         try {
             String cpf = loginDTO.getCpf();
@@ -98,6 +107,12 @@ public class LoginService {
         }
     }
 
+    /**
+     * Gera um token JWT para o usuário.
+     *
+     * @param cpf O CPF do usuário.
+     * @return TokenResponse contendo o token JWT gerado.
+     */
     private TokenResponse gerarTokenJWT(String cpf) {
         String token = Jwt.issuer("sage-app")
                 .subject(cpf)
@@ -108,6 +123,14 @@ public class LoginService {
         return new TokenResponse(token);
     }
 
+    /**
+     * Realiza o login no sistema SIGAA.
+     *
+     * @param user O nome de usuário.
+     * @param password A senha do usuário.
+     * @return true se o login for bem-sucedido, false caso contrário.
+     * @throws IOException Se ocorrer um erro durante a requisição.
+     */
     private boolean performLogin(String user, String password) throws IOException {
         // Limpa os cookies antes de realizar uma nova tentativa de login
         cookieStore.clear();
@@ -138,6 +161,11 @@ public class LoginService {
         }
     }
 
+    /**
+     * Realiza a escolha de vínculo no sistema SIGAA.
+     *
+     * @throws IOException Se ocorrer um erro durante a requisição.
+     */
     private void performEscolhaVinculo() throws IOException {
         Request request = new Request.Builder()
                 .url(SIGAA_ESCOLHA_VINCULO)
@@ -161,7 +189,12 @@ public class LoginService {
         }
     }
 
-
+    /**
+     * Segue um redirecionamento para a nova URL.
+     *
+     * @param newLocation A nova URL para redirecionamento.
+     * @throws IOException Se ocorrer um erro durante a requisição.
+     */
     private void followRedirect(String newLocation) throws IOException {
         String url = newLocation.startsWith("http") ? newLocation : "https://sig.ifrs.edu.br" + newLocation;
         Request redirectRequest = new Request.Builder()
@@ -179,6 +212,12 @@ public class LoginService {
         }
     }
 
+    /**
+     * Realiza a requisição para a página do docente no sistema SIGAA.
+     *
+     * @param cpf O CPF do usuário.
+     * @throws IOException Se ocorrer um erro durante a requisição.
+     */
     private void performPaginaDocente(String cpf) throws IOException {
         RequestBody formBody = new FormBody.Builder()
                 .add("menu:j_id_jsp_798026457_3", "menu:j_id_jsp_798026457_3")
@@ -204,6 +243,13 @@ public class LoginService {
         }
     }
 
+    /**
+     * Obtém os detalhes de um evento específico.
+     *
+     * @param id O ID do evento.
+     * @param cpf O CPF do usuário.
+     * @throws IOException Se ocorrer um erro durante a requisição.
+     */
     private void obterDetalhesEvento(int id, String cpf) throws IOException {
         RequestBody formDetalheEvento = new FormBody.Builder()
                 .add("formAtividade", "formAtividade")
@@ -249,6 +295,12 @@ public class LoginService {
         }
     }
 
+    /**
+     * Analisa o HTML da página e extrai os eventos.
+     *
+     * @param html O HTML da página.
+     * @param cpf O CPF do usuário.
+     */
     private void parseHtml(String html, String cpf) {
         Document doc = Jsoup.parse(html);
         Elements rows = doc.select("table.listagem:first-of-type tbody tr");
@@ -280,7 +332,11 @@ public class LoginService {
         }
     }
 
-
+    /**
+     * Salva os eventos no banco de dados.
+     *
+     * @param cpf O CPF do usuário.
+     */
     private void salvarEventosNoBanco(String cpf) {
         try {
             for (ProcessarEvento evento : eventos) {

@@ -10,12 +10,21 @@ import sage.services.LoginService;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Classe controladora para lidar com requisições de autenticação.
+ */
 @Path("/auth")
 public class LoginController {
 
     @Inject
     LoginService loginService;
 
+    /**
+     * Endpoint para login de usuário.
+     *
+     * @param loginDTO O objeto de transferência de dados de login contendo as credenciais do usuário.
+     * @return Um objeto Response contendo o token de autenticação ou uma mensagem de erro.
+     */
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
