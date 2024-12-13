@@ -59,6 +59,8 @@ quarkus.smallrye-jwt.enabled=true
 ```
 
 ## Geração de chaves públicas e privadas
+OBS: GERAR AS PRÓPRIAS CHAVES, AS QUE ESTÃO NO PROJETO SÃO MERAMENTE PARA 
+ILUSTRAÇÃO E DEMONSTRAÇÃO DO SISTEMA.
 
 ### Para criar uma chave privada
 openssl genrsa -out rsaPrivateKey.pem 2048
@@ -82,5 +84,26 @@ smallrye.jwt.sign.key.location=privateKey.pem
 - [Documentação do Jakarta EE](https://jakarta.ee/specifications/platform/8/)
 - [Documentação do Jsoup](https://jsoup.org/apidocs/)
 - [Documentação do OkHttp](https://square.github.io/okhttp/)
-- [Documentação local do projeto](https://github.com/LeonardoSilvaFreitas/sageBack/tree/final/docs)
+- [Documentação local do projeto](https://github.com/LeonardoSilvaFreitas/sageFront.git)
 - [Documentação do projeto - página](https://leonardosilvafreitas.github.io/sageBack/)
+
+## OBSERVAÇÕES
+
+- O LoginService localizado em src/main/services foi projetado com base no acesso do professor Alex de Oliveira Martins.
+É necessário testes com outros servidores para validar.
+- Em caso da troca de webscrapping para API, o loginService deve ser alterado para se adequar a nova API. As demais funcionalidades estão isoladas e independentes do Scraping.
+Atualmente, o serviço segue a seguinte lógica:
+    - Acessa a página de login do sistema.
+    - Realiza o login com as credenciais fornecidas.
+    - Acessa a página de eventos.
+    - Realiza o scraping da página de eventos.
+    - Persiste a lista de eventos.
+
+## BACKLOG DE TRABALHOS FUTUROS
+- (i) gerenciamento e controle de recursos, através da criação de um módulo específico para gerenciar limpeza, equipe de apoio, equipamentos de som e vídeo, e acessos fora do horário usual do campus. 
+Assim, acredita-se que seja possível aprimorar a logística e a administração de recursos necessários para a realização e o gerenciamento de eventos; 
+- (ii) reserva de espaços e salas: implementação da funcionalidade que permite aos coordenadores reservar espaços e salas disponíveis, com uma interface administrativa para cadastro e gerenciamento de salas e horários. Com isso a organização dos eventos será facilitada, evitando conflitos de agendamento e garantindo maior controle sobre a utilização dos espaços do campus para a realização de eventos; 
+     - Há uma versão da funcionalidade de Reservas na branch main, é possível ter um vislumbre de como seria
+ a funcionalidade, o que falta é o lado admin para registro dos espaços e o horários.
+- (iii) versão Web do sistema, seria importante desenvolver uma versão web do sistema para ampliar o acesso aos usuários que utilizam dispositivos iOS ou que não possuem smartphones. Essa funcionalidade tem o intuito de garantir maior acessibilidade e inclusão, permitindo que todos os participantes possam utilizar as funcionalidades do sistema independentemente do dispositivo; 
+
